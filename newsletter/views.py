@@ -7,6 +7,7 @@ from .models import Attempt
 from .tasks import send_campaign
 from .models import CampaignAttempt, SentMessage
 from .decorators import user_owns_object, manager_access
+from django.views.decorators.cache import cache_page, cache_control
 
 
 def recipient_list(request):
@@ -212,15 +213,25 @@ def edit_campaign(request, campaign_id):
     campaign = get_object_or_404(Campaign, id=campaign_id)
 
 
-@manager_access
+@manager_access  # Применяем декоратор
 def all_campaigns(request):
     """ Представление для просмотра всех кампаний. """
     campaigns = Campaign.objects.all()  # Получаем все кампании
     return render(request, 'all_campaigns.html', {'campaigns': campaigns})
 
 
-@manager_access
+@manager_access  # Применяем декоратор
 def all_clients(request):
     """ Представление для просмотра всех клиентов. """
     clients = Client.objects.all()  # Получаем всех клиентов
     return render(request, 'all_clients.html', {'clients': clients})
+
+
+@cache_page(60 * 15)  # Кешировать на 15 минут
+def my_view(request):
+    return render(request, 'my_template.html', context)
+
+
+@cache_control(private=True, max_age=3600)  # Кешировать на 1 час
+def another_view(request):
+    return render(request, 'another_template.html', context)

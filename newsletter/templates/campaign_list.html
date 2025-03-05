@@ -1,0 +1,37 @@
+<h2>Список рассылок</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Тема сообщения</th>
+            <th>Статус</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for campaign in campaigns %}
+        <tr>
+            <td>{{ campaign.message.subject }}</td>
+            <td>{{ campaign.status }}</td>
+            <td>
+                <a href="{% url 'edit_campaign' campaign.id %}">Редактировать</a>
+                <form method="POST" action="{% url 'delete_campaign' campaign.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_campaign' %}">Добавить новую рассылку</a>
+<td>
+    <a href="{% url 'edit_campaign' campaign.id %}">Редактировать</a>
+    <form method="POST" action="{% url 'delete_campaign' campaign.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <form method="POST" action="{% url 'send_campaign' campaign.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Отправить</button>
+    </form>
+</td>
