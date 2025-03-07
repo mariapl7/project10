@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_apscheduler',
     'newsletter',
     'django.contrib.sites',  # Для работы django-allauth
     'allauth',
     'allauth.account',  # Модули для регистрации и аутентификации
+    'users',
 ]
 
 SITE_ID = 1  # Добавьте эту строку для django-allauth
@@ -131,8 +131,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.User'
-
 import os
 
 # ...
@@ -166,6 +164,7 @@ LOGGING = {
     },
 }
 
+AUTH_USER_MODEL = 'users.User'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',  # Вход через Django
