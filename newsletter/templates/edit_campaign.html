@@ -1,0 +1,7 @@
+<h2>Добавить рассылку</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Редактировать рассылку</button>
+</form>
+<a href="{% url 'campaign_list' %}">Назад</a>

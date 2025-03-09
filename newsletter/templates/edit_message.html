@@ -1,0 +1,7 @@
+<h2>Добавить сообщение</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Редактировать сообщение</button>
+</form>
+<a href="{% url 'message_list' %}">Назад</a>
