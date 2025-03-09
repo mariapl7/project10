@@ -1,0 +1,25 @@
+<!-- users/templates/users/subscriber_list.html -->
+<h1>Список получателей рассылки</h1>
+<a href="{% url 'subscriber_create' %}">Добавить получателя</a>
+<table>
+    <tr>
+        <th>Email</th>
+        <th>Ф.И.О.</th>
+        <th>Комментарий</th>
+        <th>Действия</th>
+    </tr>
+    {% for subscriber in subscribers %}
+    <tr>
+        <td>{{ subscriber.email }}</td>
+        <td>{{ subscriber.full_name }}</td>
+        <td>{{ subscriber.comment }}</td>
+        <td>
+            <a href="{% url 'subscriber_update' subscriber.id %}">Редактировать</a>
+            <form action="{% url 'subscriber_delete' subscriber.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

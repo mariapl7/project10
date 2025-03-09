@@ -1,0 +1,20 @@
+<h1>Список сообщений</h1>
+<a href="{% url 'message_create' %}">Добавить сообщение</a>
+<table>
+    <tr>
+        <th>Тема письма</th>
+        <th>Действия</th>
+    </tr>
+    {% for message in messages %}
+    <tr>
+        <td>{{ message.subject }}</td>
+        <td>
+            <a href="{% url 'message_update' message.id %}">Редактировать</a>
+            <form action="{% url 'message_delete' message.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
