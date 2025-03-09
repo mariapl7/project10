@@ -1,0 +1,7 @@
+<h2>Добавить получателя</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+</form>
+<a href="{% url 'recipient_list' %}">Назад</a>

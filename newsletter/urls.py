@@ -3,6 +3,7 @@ from .views import add_recipient, edit_recipient, delete_recipient, recipient_li
 from .views import add_message, edit_message, delete_message, message_list
 from .views import add_campaign, edit_campaign, delete_campaign, campaign_list, send_campaign, attempt_list, home
 from .views import statistics_view
+from .views import all_campaigns, all_clients
 
 
 urlpatterns = [
@@ -22,4 +23,6 @@ urlpatterns = [
     path('campaigns/send/<int:id>/', send_campaign, name='send_campaign'),  # Новый маршрут для отправки
     path('campaigns/<int:campaign_id>/attempts/', attempt_list, name='attempt_list'),  # Новый маршрут для списка попыток
     path('statistics/', statistics_view, name='statistics'),
+    path('campaigns/', all_campaigns, name='all_campaigns'),
+    path('clients/', all_clients, name='all_clients'),
 ]

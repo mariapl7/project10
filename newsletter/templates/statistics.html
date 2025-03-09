@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика рассылок</title>
+</head>
+<body>
+    <h1>Статистика рассылок</h1>
+
+    <h2>Попытки рассылок</h2>
+    <p>Успешные попытки: {{ successful_attempts }}</p>
+    <p>Неуспешные попытки: {{ failed_attempts }}</p>
+
+    <h2>Отправленные сообщения</h2>
+    <p>Всего отправлено сообщений: {{ total_messages_sent }}</p>
+    <p>Успешные сообщения: {{ successful_messages }}</p>
+    <p>Неуспешные сообщения: {{ failed_messages }}</p>
+</body>
+</html>

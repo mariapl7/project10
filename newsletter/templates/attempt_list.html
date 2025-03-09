@@ -1,0 +1,20 @@
+<h2>Отчеты по попыткам рассылки для "{{ campaign.message.subject }}"</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Дата и время</th>
+            <th>Статус</th>
+            <th>Ответ почтового сервера</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attempt in attempts %}
+            <tr>
+                <td>{{ attempt.timestamp }}</td>
+                <td>{{ attempt.get_status_display }}</td>
+                <td>{{ attempt.response }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'campaign_list' %}">Назад</a>
